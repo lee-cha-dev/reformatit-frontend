@@ -1,0 +1,173 @@
+.App {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    min-height: 100vh;
+    height: 100%;
+    width: 100vw;
+    margin: 0;
+    padding: 100px 0 0 0;
+
+    background-color: black;
+    color: silver;
+}
+
+.App-header {
+    padding-top: 5vh;
+    text-align: center;
+}
+
+.header-logo-one {
+    color: Silver;
+}
+
+.header-logo-two {
+    color: dodgerblue;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.image_logo_one {
+    color: silver;
+}
+
+.image_logo_two {
+    color: dodgerblue;
+}
+
+.video_logo_one {
+    color: silver;
+}
+
+.video_logo_two {
+    color: red;
+}
+
+.App-content {
+    flex: 1; /* This makes the content area grow and push the footer to the bottom */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+    /*padding-bottom: 100px; !* Ensure there's space for the footer *!*/
+}
+
+.App h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
+}
+
+.App input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*text-align: center;*/
+    align-content: center;
+    max-width: 60vw;
+    width: 60vw;
+}
+
+.convert-to-option {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*text-align: center;*/
+    align-content: center;
+    max-width: 60vw;
+    width: 60vw;
+}
+
+.convert-button {
+    margin-top: 2vh;
+}
+
+.convert-to-input button {
+    margin-top: 2vh;
+}
+
+.App chakra-stack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.converted-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    max-width: 60vw;
+    width: 60vw;
+    margin-top: 2vh;
+}
+
+.convert-img-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    max-width: 60vw;
+    width: 60vw;
+}
+
+.image-success {
+    margin-top: 25px;
+}
+
+.image-success-text {
+    color: green;
+    font-weight: bold;
+}
+
+.save-image-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.save-image {
+    width: auto;
+    align-self: center;
+    margin-top: 2vh;
+    /*margin-bottom: 8vh;*/
+}
+
+.error-close-button {
+    margin-left: 5px;
+}
+
+.error-alert {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(250, 250, 250, 250);
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+}
