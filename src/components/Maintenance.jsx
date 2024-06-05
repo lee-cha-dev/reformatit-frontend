@@ -4,13 +4,19 @@ import { Box, Text, Button, VStack, Center } from '@chakra-ui/react';
 import HeaderLogo from './HeaderLogo';
 import {AnimatePresence} from "framer-motion";
 
+const dev = false;
+
 const MaintenancePage = () => {
   const [testData, setTestData] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const callTest = async () => {
     try {
-      const response = await fetch('http://0.0.0.0:8080/test/');
+      let response;
+      if (dev)
+        response = await fetch('http://0.0.0.0:8080/test/');
+      else
+        response = await fetch('https://reformatit-backend-7ivz4pmrva-wn.a.run.app/test/');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
