@@ -1,0 +1,12 @@
+docker build -t reformatit-frontend .
+docker run -p 3000:3000 reformatit-frontend
+
+
+-----------------------------------------------------------------------
+Rebuild the image:
+docker build -t gcr.io/tensile-stack-425502-c6/reformatit-frontend:latest .
+
+Push Docker Image to GCR
+docker push gcr.io/tensile-stack-425502-c6/reformatit-frontend:latest
+
+# DEFER TO `deploy_to_google` file for full instructions

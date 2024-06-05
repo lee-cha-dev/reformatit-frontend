@@ -15,7 +15,6 @@ const MaintenancePage = () => {
             </Text>
             <Text fontSize="lg" mt={4}>
               Sorry for the inconvenience. We're performing some maintenance at the moment.
-              We'll be back up shortly!
             </Text>
           </Box>
           <Button colorScheme="blue" onClick={() => window.location.reload()}>
