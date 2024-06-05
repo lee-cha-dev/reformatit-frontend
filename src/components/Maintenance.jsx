@@ -4,6 +4,7 @@ import { Box, Text, Button, VStack, Center } from '@chakra-ui/react';
 import HeaderLogo from './HeaderLogo';
 import {AnimatePresence} from "framer-motion";
 
+// Dev to be toggled on/off
 const dev = false;
 
 const MaintenancePage = () => {
