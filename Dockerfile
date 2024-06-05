@@ -20,19 +20,19 @@ RUN npm run build
 # Install a lightweight web server to serve the React app
 RUN npm install -g serve
 
-# FOR GOOGLE DEPLOYMENT
-# Set the environment variable to use port 8080
-ENV PORT 8080
-
-# Set the command to run the web server and serve the built React app on port 8080
-CMD ["serve", "-s", "build", "-l", "8080"]
-
-# Expose port 8080
-EXPOSE 8080
+## FOR GOOGLE DEPLOYMENT
+## Set the environment variable to use port 8080
+#ENV PORT 8080
+#
+## Set the command to run the web server and serve the built React app on port 8080
+#CMD ["serve", "-s", "build", "-l", "8080"]
+#
+## Expose port 8080
+#EXPOSE 8080
 
 # FOR DEVELOPMENT
-## Set the command to run the web server and serve the built React app
-#CMD ["serve", "-s", "build", "-l", "3000"]
-#
-## Expose port 3000
-#EXPOSE 3000
+# Set the command to run the web server and serve the built React app
+CMD ["serve", "-s", "build", "-l", "3000"]
+
+# Expose port 3000
+EXPOSE 3000
