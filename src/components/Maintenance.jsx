@@ -5,7 +5,7 @@ import HeaderLogo from './HeaderLogo';
 import {AnimatePresence} from "framer-motion";
 
 // Dev to be toggled on/off
-const dev = false;
+const dev = true;
 
 const MaintenancePage = () => {
   const [testData, setTestData] = useState(null);

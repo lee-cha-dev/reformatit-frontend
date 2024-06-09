@@ -13,7 +13,14 @@ import { Helmet } from 'react-helmet';
 import InfoSection from './InfoSection';
 
 const BACK_END_URL = "https://api.reformatit.com"; // https://ec2-18-119-130-207.us-east-2.compute.amazonaws.com/
-const BACK_END_DEV_URL = "http://localhost:8000";
+const BACK_END_DEV_URL = "http://0.0.0.0:8080";
+const DEV = true;
+let convert_url;
+if (DEV){
+    convert_url = BACK_END_DEV_URL
+} else {
+    convert_url = BACK_END_URL;
+}
 
 const MotionBox = motion(Box);
 
@@ -21,7 +28,8 @@ const MotionBox = motion(Box);
 const ImageUploader = () => {
     // useState & useEffort variables
     const [file, setFile] = useState(null);
-    const [convertedFile, setConvertedFile] = useState(null);
+    const [filename, setFilename] = useState(null);
+    const [convertedImage, setConvertedImage] = useState(null);
     const [convertTo, setConvertTo] = useState("JPEG");
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -34,8 +42,16 @@ const ImageUploader = () => {
 
     // Methods
     const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-        setConvertedFile(null);
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
+
+        // Extract the filename
+        const nameWithoutExtension = selectedFile.name.split(".").slice(0, -1).join(".");
+        setFilename(nameWithoutExtension);
+        console.log(`selectedFile.name: ${selectedFile.name}`);
+        console.log(`filename: ${filename}`);
+
+        setConvertedImage(null);
     };
 
     const handleConvert = async () => {
@@ -46,20 +62,36 @@ const ImageUploader = () => {
         setLoading(true);
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("convert_to", convertTo);
+
+        // Ensure 'jpg' is mapped to 'jpeg' and 'tif' to 'tiff'
+        let targetFormat = convertTo;
+        if (convertTo === 'jpg') {
+            targetFormat = 'jpeg';
+        } else if (convertTo === 'tif') {
+            targetFormat = 'tiff';
+        }
+
+        formData.append("convert_to", targetFormat);
         try {
            const response = await axios.post(
-            `${BACK_END_URL}/convert/`,
-            formData,
-            {responseType: "blob"}
+                `${convert_url}/convert/`,
+                formData,
+                {responseType: "blob"}
             );
-            const url = URL.createObjectURL(new Blob([response.data]));
-            setConvertedFile(url);
+           // PREVIOUS IMPLEMENTATION
+            // const url = URL.createObjectURL(new Blob([response.data]));
+            // setConvertedImage(url);
+            // setError(null);
+            // TESTING AREA
+            // Key Change: Handling the response to create a Blob URL
+            const blob = new Blob([response.data], { type: response.headers['content-type'] });
+            const url = URL.createObjectURL(blob);
+            setConvertedImage(url);
             setError(null);
         } catch (error) {
             console.error("There was an error!", error)
             if (error.response){
-                setConvertedFile(null);
+                setConvertedImage(null);
                 const status = error.response.status;
                 switch (status) {
                     case 413:
@@ -77,10 +109,10 @@ const ImageUploader = () => {
                 }
             } else if (error.request){
                 setError("Unable to Process Your Request - Please Try Again Later.");
-                setConvertedFile(null);
+                setConvertedImage(null);
             } else {
                 setError("An Error Occurred. Please Try Again Later.");
-                setConvertedFile(null);
+                setConvertedImage(null);
             }
         } finally {
             setLoading(false);
@@ -103,14 +135,13 @@ const ImageUploader = () => {
                     <option value="GIF">GIF</option>
                     <option value="HEIF">HEIF</option>
                     <option value="ICO">ICO</option>
-                    <option value="IM">IM</option>
                     <option value="JPEG">JPEG</option>
                     <option value="JPG">JPG</option>
                     <option value="PCX">PCX</option>
                     <option value="PNG">PNG</option>
                     <option value="PPM">PPM</option>
                     <option value="SGI">SGI</option>
-                    <option value="SPIDER">SPIDER</option>
+                    <option value="TIF">TIF</option>
                     <option value="TIFF">TIFF</option>
                     <option value="WebP">WebP</option>
                 </Select>
@@ -175,7 +206,7 @@ const ImageUploader = () => {
                         </MotionBox>
                     )}
                 </AnimatePresence>
-                {convertedFile && (
+                {convertedImage && (
                     <Box className="convert-img-div">
                         <Container className="image-success" py={{ base: '4', md: '8' }}>
                             <HStack>
@@ -184,11 +215,11 @@ const ImageUploader = () => {
                                 <Divider />
                             </HStack>
                         </Container>
-                        {/*<Image className="converted-img" src={convertedFile} alt={"Converted Img"} />*/}
+                        {/*<Image className="converted-img" src={convertedImage} alt={"Converted Img"} />*/}
                             <Button
                                 className="save-image" as="a"
-                                href={convertedFile}
-                                download={`converted_image.${convertTo.toLowerCase()}`}
+                                href={convertedImage}
+                                download={`${filename}.${convertTo.toLowerCase()}`}
                                 sx={{
                                     bg: 'white',
                                     color: 'black',

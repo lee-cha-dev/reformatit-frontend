@@ -21,7 +21,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Maintenance />} />
                   {/*<Route path="/" element={<ImageUploader />} />*/}
-                  {/*<Route path="/images" element={<ImageUploader />} />*/}
+                  <Route path="/images" element={<ImageUploader />} />
                   {/*<Route path="/videos" element={<ImageUploader />} />*/}
                 </Routes>
               </div>
