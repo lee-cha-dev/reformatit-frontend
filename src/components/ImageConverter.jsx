@@ -5,7 +5,14 @@ import {
     Select,
     Input,
     VStack,
-    Image, AlertIcon, Alert, CloseButton, Text, Divider, HStack, Container, Spinner,
+    AlertIcon,
+    Alert,
+    CloseButton,
+    Text,
+    Divider,
+    HStack,
+    Container,
+    Spinner,
 } from '@chakra-ui/react';
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
@@ -76,14 +83,10 @@ const ImageUploader = () => {
            const response = await axios.post(
                 `${convert_url}/convert/`,
                 formData,
-                {responseType: "blob"}
-            );
-           // PREVIOUS IMPLEMENTATION
-            // const url = URL.createObjectURL(new Blob([response.data]));
-            // setConvertedImage(url);
-            // setError(null);
-            // TESTING AREA
-            // Key Change: Handling the response to create a Blob URL
+                {
+                    responseType: "blob",
+                    timeout: 10000
+                })
             const blob = new Blob([response.data], { type: response.headers['content-type'] });
             const url = URL.createObjectURL(blob);
             setConvertedImage(url);
@@ -110,6 +113,8 @@ const ImageUploader = () => {
             } else if (error.request){
                 setError("Unable to Process Your Request - Please Try Again Later.");
                 setConvertedImage(null);
+            } else if (error.code === "ECONNABORTED"){
+                setError("Request timed out. Please try again.");
             } else {
                 setError("An Error Occurred. Please Try Again Later.");
                 setConvertedImage(null);
