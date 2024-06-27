@@ -10,18 +10,20 @@ import Header from './components/Header';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import theme from "./theme"
 import Maintenance from './components/Maintenance';
+import DocumentConverter from "./components/DocumentConverter";
 
 function App() {
   return (
       <ChakraProvider theme={theme}>
         <BrowserRouter>
           <div className="App">
-              {/*<Header />*/}
+              <Header />
               <div className="App-content">
                 <Routes>
-                  <Route path="/" element={<Maintenance />} />
-                  {/*<Route path="/" element={<ImageUploader />} />*/}
-                  <Route path="/images" element={<ImageUploader />} />
+                  {/*<Route path="/" element={<Maintenance />} />*/}
+                  <Route path="/" element={<ImageUploader />} />
+                  {/*<Route path="/images" element={<ImageUploader />} />*/}
+                  <Route path="/docs" element={<DocumentConverter />} />
                   {/*<Route path="/videos" element={<ImageUploader />} />*/}
                 </Routes>
               </div>

@@ -20,6 +20,11 @@ const Header = (props) => {
       secondClass = "video_logo_two";
       mediaType = "Videos";
       break;
+    case '/docs':
+      firstClass = "doc_logo_one";
+      secondClass = "doc_logo_two";
+      mediaType = "Documents";
+      break;
     default:
       firstClass = "image_logo_one";
       secondClass = "image_logo_two";

@@ -21,7 +21,7 @@ import InfoSection from './InfoSection';
 
 const BACK_END_URL = "https://api.reformatit.com"; // https://ec2-18-119-130-207.us-east-2.compute.amazonaws.com/
 const BACK_END_DEV_URL = "http://0.0.0.0:8080";
-const DEV = true;
+const DEV = false;
 let convert_url;
 if (DEV){
     convert_url = BACK_END_DEV_URL
@@ -85,7 +85,7 @@ const ImageUploader = () => {
                 formData,
                 {
                     responseType: "blob",
-                    timeout: 10000
+                    timeout: 120000
                 })
             const blob = new Blob([response.data], { type: response.headers['content-type'] });
             const url = URL.createObjectURL(blob);

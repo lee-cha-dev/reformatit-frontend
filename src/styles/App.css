@@ -26,6 +26,14 @@
     color: dodgerblue;
 }
 
+.doc_logo_one {
+    color: silver;
+}
+
+.doc_logo_two {
+    color: forestgreen;
+}
+
 .logo-container {
     display: flex;
     justify-content: center;

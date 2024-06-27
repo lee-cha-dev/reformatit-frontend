@@ -2,6 +2,8 @@
 import React from 'react';
 import { Box, Text, HStack } from '@chakra-ui/react';
 
+// Will need to modify so that the HStack instances the ads dynamically based on screen width.
+
 const Footer = () => {
     return (
         <Box

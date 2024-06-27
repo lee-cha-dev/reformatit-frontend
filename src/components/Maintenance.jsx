@@ -44,26 +44,26 @@ const MaintenancePage = () => {
           <Button colorScheme="blue" onClick={() => window.location.reload()}>
             Refresh
           </Button>
-          <Button colorScheme="green" onClick={() => callTest()}>
-            Test
-          </Button>
-          <AnimatePresence>
-            {testData && (
-                <Box mt={4}>
-                  <Text fontSize="2xl" fontWeight="bold">Test Data:</Text>
-                  {Object.entries(testData).map(([key, value]) => (
-                      <Text key={key} fontSize="md">{`${key}: ${value}`}</Text>
-                  ))}
-                </Box>
-            )}
-          </AnimatePresence>
-          <AnimatePresence>
-            {errorMessage && (
-                <Text fontSize="md" mt={4} color="red">
-                  Error: {errorMessage}
-                </Text>
-            )}
-          </AnimatePresence>
+          {/*<Button colorScheme="green" onClick={() => callTest()}>*/}
+          {/*  Test*/}
+          {/*</Button>*/}
+          {/*<AnimatePresence>*/}
+          {/*  {testData && (*/}
+          {/*      <Box mt={4}>*/}
+          {/*        <Text fontSize="2xl" fontWeight="bold">Test Data:</Text>*/}
+          {/*        {Object.entries(testData).map(([key, value]) => (*/}
+          {/*            <Text key={key} fontSize="md">{`${key}: ${value}`}</Text>*/}
+          {/*        ))}*/}
+          {/*      </Box>*/}
+          {/*  )}*/}
+          {/*</AnimatePresence>*/}
+          {/*<AnimatePresence>*/}
+          {/*  {errorMessage && (*/}
+          {/*      <Text fontSize="md" mt={4} color="red">*/}
+          {/*        Error: {errorMessage}*/}
+          {/*      </Text>*/}
+          {/*  )}*/}
+          {/*</AnimatePresence>*/}
         </VStack>
       </Center>
     </>
